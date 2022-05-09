@@ -4,13 +4,15 @@ let saveNoteBtn;
 let newNoteBtn;
 let noteList;
 
-if (window.location.pathname === '/notes') {
+if (window.location.pathname === '/notes.html') {
   noteTitle = document.querySelector('.note-title');
   noteText = document.querySelector('.note-textarea');
   saveNoteBtn = document.querySelector('.save-note');
+  console.log(saveNoteBtn)
   newNoteBtn = document.querySelector('.new-note');
   noteList = document.querySelectorAll('.list-container .list-group');
 }
+
 
 // Show an element
 const show = (elem) => {
@@ -67,6 +69,7 @@ const renderActiveNote = () => {
 };
 
 const handleNoteSave = () => {
+  console.log('is this button working')
   const newNote = {
     title: noteTitle.value,
     text: noteText.value,
@@ -165,7 +168,7 @@ const renderNoteList = async (notes) => {
     noteListItems.push(li);
   });
 
-  if (window.location.pathname === '/notes') {
+  if (window.location.pathname === '/notes.html') {
     noteListItems.forEach((note) => noteList[0].append(note));
   }
 };
@@ -173,7 +176,7 @@ const renderNoteList = async (notes) => {
 // Gets notes from the db and renders them to the sidebar
 const getAndRenderNotes = () => getNotes().then(renderNoteList);
 
-if (window.location.pathname === '/notes') {
+if (window.location.pathname === '/notes.html') {
   saveNoteBtn.addEventListener('click', handleNoteSave);
   newNoteBtn.addEventListener('click', handleNewNoteView);
   noteTitle.addEventListener('keyup', handleRenderSaveBtn);
